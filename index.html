@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audi A4 B6 1.9 TDI 131HP</title>
+    <meta property="og:title" content="Audi A4 – 1.9TDI" />
+    <meta property="og:description" content="Audi A4 B6 1.9TDI 131 коня за продажба!" />
+    <meta property="og:type" content="website" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-image: url('a4.png'); /* Update filename if necessary */
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Class added dynamically via JS to clear the background image */
+        body.hide-bg {
+            background-image: none !important;
+            background-color: #000000 !important;
+        }
+
+        #scare-video {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none; /* Disables all mouse clicks/touches on the video */
+    user-select: none;
+}
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #181818;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+            z-index: 10000;
+        }
+
+        #cookie-banner p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cookie-btn {
+            background-color: #7b52ab;
+            color: #ffffff;
+            border: none;
+            padding: 8px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .cookie-btn:hover {
+            background-color: #684293;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="scare-video" src="0913.mp4" preload="auto" autoplay playsinline loop pointer-events="none"></video>
+
+    <div id="cookie-banner">
+        <p>This website uses cookies to sell cars.</p>
+        <div class="btn-container">
+            <button class="cookie-btn" onclick="triggerPrank()">Accept</button>
+            <button class="cookie-btn" onclick="triggerPrank()">Decline</button>
+        </div>
+    </div>
+
+  <script>
+window.addEventListener('beforeunload', function (e) {
+    if (document.body.classList.contains('hide-bg')) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
+
+// Re-trigger fullscreen whenever they click anywhere after the prank is active
+document.addEventListener('click', function() {
+    if (document.body.classList.contains('hide-bg')) {
+        var video = document.getElementById('scare-video');
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+        }
+    }
+});
+
+function triggerPrank() {
+    // Instantly clear the background image to pure black
+    document.body.classList.add('hide-bg');
+
+    // Hide the cookie banner overlay
+    document.getElementById('cookie-banner').style.display = 'none';
+
+    // Show and play video in fullscreen
+    var video = document.getElementById('scare-video');
+    video.style.display = 'block';
+    video.play();
+
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+    }
+}
+</script>
+</body>
+</html>
